@@ -15,16 +15,16 @@ public class MusicStore {
     // Setting up instance variables (will only create one MusicStore obj however)
 
     // using arraylist as there could be multiple songs with the same title
-    private Map<String, ArrayList<Song>> songsByTitle;
+    private HashMap<String, ArrayList<Song>> songsByTitle;
 
     // using arraylist as there could be multiple songs by the same artist
-    private Map<String, ArrayList<Song>> songsByArtist;
+    private HashMap<String, ArrayList<Song>> songsByArtist;
 
     // using arraylist as there could be multiple albums with the same title
-    private Map<String, ArrayList<Album>> albumsByTitle;
+    private HashMap<String, ArrayList<Album>> albumsByTitle;
 
     // using arraylist as there could be multiple albums by the same artist
-    private Map<String, ArrayList<Album>> albumsByArtist;
+    private HashMap<String, ArrayList<Album>> albumsByArtist;
 
     // constructor to create MusicStore that takes in the name of a directory and
     // creates maps so we
@@ -154,5 +154,7 @@ public class MusicStore {
             return null;
         }
     }
+
+    //TODO HANDLE SITUATION WHEN LIST IS EMPTY PRINT STATEMENT
 
 }
