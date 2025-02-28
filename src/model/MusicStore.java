@@ -43,7 +43,7 @@ public class MusicStore {
 
         // based on spec we can assume the dir exists and contains things
         for (int i = 0; i < files.length; i++) {
-            //dont try to create albums based on the albums.txt file
+            // dont try to create albums based on the albums.txt file
             if (files[i].getName().equals("albums.txt")) {
                 continue;
             }

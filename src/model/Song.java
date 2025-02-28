@@ -5,15 +5,16 @@
 package src.model;
 
 public class Song {
-    //setting up instance variables to hold information about the song
+    // setting up instance variables to hold information about the song
     // could be final but not needed since strings are already immutable
     private String title;
     private String artist;
     private String album;
 
     /*
-        constructor so we can create song objects easily
-        @pre title != null && artist != null && album != null
+     * constructor so we can create song objects easily
+     * 
+     * @pre title != null && artist != null && album != null
      */
     public Song(String title, String artist, String album) {
         this.title = title;
@@ -22,16 +23,15 @@ public class Song {
     }
 
     /*
-        constructor to make making copies a lot easier
-        @pre s != null
+     * constructor to make making copies a lot easier
+     * 
+     * @pre s != null
      */
-    public Song(Song s){
-         this.title = s.title;
-         this.artist = s.artist;
-         this.album = s.album;
+    public Song(Song s) {
+        this.title = s.title;
+        this.artist = s.artist;
+        this.album = s.album;
     }
-
-
 
     // auto generated getters for each
     public String getTitle() {
