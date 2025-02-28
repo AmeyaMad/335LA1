@@ -111,7 +111,8 @@ public class MusicStore {
                     tmpAlbums.add(curAlbum);
                     albumsByArtist.put(albumInfo[1], tmpAlbums);
                 }
-                //should never happen since we are promised in the spec that there will be files
+                // should never happen since we are promised in the spec that there will be
+                // files
             } catch (Exception e) {
                 System.err.println(e);
             }

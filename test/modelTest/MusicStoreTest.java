@@ -95,26 +95,25 @@ public class MusicStoreTest {
         assertEquals(expected, musicStore.getAlbumsByArtistString("Adele"));
     }
 
-    //now lets test the case where the thing does not exist
+    // now lets test the case where the thing does not exist
     @Test
-    public void testGetSongsByTitleNull(){
+    public void testGetSongsByTitleNull() {
         assertEquals("This Song is not in the songs list", musicStore.getSongsByTitleString("Yellow Brick Road"));
     }
 
     @Test
-    public void testGetSongsByArtistNull(){
+    public void testGetSongsByArtistNull() {
         assertEquals("There are no songs by this artist", musicStore.getSongsByArtistString("Kanye West"));
     }
 
     @Test
-    public void testGetAlbumsByTitleNull(){
+    public void testGetAlbumsByTitleNull() {
         assertEquals("There are no albums of this name", musicStore.getAlbumsByTitleString("DNE"));
     }
 
     @Test
-    public void testGetAlbumsByArtistNull(){
+    public void testGetAlbumsByArtistNull() {
         assertEquals("There are no albums by this artist", musicStore.getAlbumsByArtistString("DNE"));
     }
-
 
 }
