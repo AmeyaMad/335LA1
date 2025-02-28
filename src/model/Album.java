@@ -44,4 +44,14 @@ public class Album {
     public ArrayList<Song> getSongs() {
         return new ArrayList<Song>(songs);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder out = new StringBuilder("Album: " + title + ", Artist: " + artist + ", Genre: " + genre + "\n");
+        for(Song s : this.songs){
+            out.append(s.getTitle()).append("\n");
+        }
+        out.append("\n");
+        return out.toString();
+    }
 }

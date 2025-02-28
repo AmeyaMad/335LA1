@@ -45,4 +45,9 @@ public class Song {
     public String getAlbum() {
         return album;
     }
+
+    @Override
+    public String toString() {
+        return "Song - Title:" + title + ", Artist: " + artist + ", Album: " + album + "\n";
+    }
 }
