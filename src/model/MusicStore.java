@@ -83,7 +83,7 @@ public class MusicStore {
                     } else {
                         ArrayList<Song> tmpSongs = new ArrayList<>();
                         tmpSongs.add(tmp);
-                        songsByArtist.put(line, tmpSongs);
+                        songsByArtist.put(albumInfo[1], tmpSongs);
                     }
                 }
                 // after our while loops is done we have an ArrayList of all the songs, we can
@@ -93,6 +93,8 @@ public class MusicStore {
                 // we will now add these to our albumBy___ maps
 
                 // this will add the album to our albumsByTitle map
+                // looks like in our test there is no albums with the same title, so not covered
+                // however good to keep incase
                 if (albumsByTitle.containsKey(albumInfo[0])) {
                     albumsByTitle.get(albumInfo[0]).add(curAlbum);
                 } else {
@@ -109,6 +111,7 @@ public class MusicStore {
                     tmpAlbums.add(curAlbum);
                     albumsByArtist.put(albumInfo[1], tmpAlbums);
                 }
+                //should never happen since we are promised in the spec that there will be files
             } catch (Exception e) {
                 System.err.println(e);
             }
@@ -155,6 +158,57 @@ public class MusicStore {
         }
     }
 
-    //TODO HANDLE SITUATION WHEN LIST IS EMPTY PRINT STATEMENT
+    // making a functions that returns string in a clean format bc default
+    // ArrayList.toString() stinks!
+
+    // string for songs by title
+    public String getSongsByTitleString(String title) {
+        if (getSongsByTitle(title) == null) {
+            return "This Song is not in the songs list";
+        }
+        StringBuilder sb = new StringBuilder();
+        for (Song s : getSongsByTitle(title)) {
+            sb.append(s.toString()).append("\n");
+        }
+        return sb.toString();
+    }
+
+    // string for songs by artist
+    public String getSongsByArtistString(String artist) {
+        if (getSongsByArtist(artist) == null) {
+            return "There are no songs by this artist";
+        }
+        StringBuilder sb = new StringBuilder();
+        for (Song s : getSongsByArtist(artist)) {
+            sb.append(s.toString()).append("\n");
+        }
+        return sb.toString();
+    }
+
+    // string for albums by title
+    public String getAlbumsByTitleString(String title) {
+        if (getAlbumsByTitle(title) == null) {
+            return "There are no albums of this name";
+        }
+        StringBuilder sb = new StringBuilder();
+        for (Album a : getAlbumsByTitle(title)) {
+            sb.append(a.toString()).append("\n");
+        }
+        return sb.toString();
+    }
+
+    // string for albums by artist
+    public String getAlbumsByArtistString(String artist) {
+        if (getAlbumsByArtist(artist) == null) {
+            return "There are no albums by this artist";
+        }
+        StringBuilder sb = new StringBuilder();
+        for (Album a : getAlbumsByArtist(artist)) {
+            sb.append(a.toString()).append("\n");
+        }
+        return sb.toString();
+    }
+
+    // TODO HANDLE SITUATION WHEN LIST IS EMPTY PRINT STATEMENT
 
 }

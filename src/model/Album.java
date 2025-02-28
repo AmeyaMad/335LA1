@@ -49,7 +49,6 @@ public class Album {
         for (Song s : this.songs) {
             out.append(s.getTitle()).append("\n");
         }
-        out.append("\n");
         return out.toString();
     }
 }

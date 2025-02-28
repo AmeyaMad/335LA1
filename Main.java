@@ -6,10 +6,6 @@ public class Main {
         MusicStore musicStore = new MusicStore("albums");
 
         //TODO implement view stuff here instead of just testing
-        StringBuilder SB = new StringBuilder();
-        for(Album a : musicStore.getAlbumsByArtist("Adele")){
-            SB.append(a.toString()).append("\n");
-        }
-        System.out.println(SB.toString());
+        System.out.print(musicStore.getAlbumsByArtistString("Adele"));
     }
 }
