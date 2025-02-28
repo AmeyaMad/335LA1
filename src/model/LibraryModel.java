@@ -10,8 +10,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LibraryModel {
-    //Setting up Instance Variables... will be similar to MusicStore
-    //using hashmpas so it is easy to lookup
+    // Setting up Instance Variables... will be similar to MusicStore
+    // using hashmpas so it is easy to lookup
     // using arraylist as there could be multiple songs with the same title
     private HashMap<String, ArrayList<Song>> songsByTitle;
 

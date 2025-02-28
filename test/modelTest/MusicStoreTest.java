@@ -2,9 +2,6 @@ package test.modelTest;
 
 import org.junit.Test;
 import src.model.MusicStore;
-import src.model.Song;
-
-import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 

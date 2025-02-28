@@ -6,6 +6,6 @@ public class Main {
         MusicStore musicStore = new MusicStore("albums");
 
         //TODO implement view stuff here instead of just testing
-        System.out.print(musicStore.getAlbumsByArtistString("Adele"));
+        System.out.print(musicStore.getAlbumsByArtistString("Coldplay"));
     }
 }

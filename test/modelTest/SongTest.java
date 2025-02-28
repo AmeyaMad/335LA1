@@ -10,22 +10,22 @@ public class SongTest {
     Song song2 = new Song(song);
 
     @Test
-    public void testGetTitle(){
+    public void testGetTitle() {
         assertEquals("Rolling in the Deep", song.getTitle());
     }
 
     @Test
-    public void testGetArtist(){
+    public void testGetArtist() {
         assertEquals("Adele", song.getArtist());
     }
 
     @Test
-    public void testGetAlbum(){
+    public void testGetAlbum() {
         assertEquals("21", song.getAlbum());
     }
 
     @Test
-    public void testToString(){
+    public void testToString() {
         assertEquals("Song - Title: Rolling in the Deep, Artist: Adele, Album: 21\n", song.toString());
     }
 }

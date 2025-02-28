@@ -46,7 +46,7 @@ public class Album {
     @Override
     public String toString() {
         StringBuilder out = new StringBuilder("Album: " + title + ", Artist: " + artist + ", Genre: " + genre + "\n");
-        for (Song s : this.songs) {
+        for (Song s : getSongs()) {
             out.append(s.getTitle()).append("\n");
         }
         return out.toString();
