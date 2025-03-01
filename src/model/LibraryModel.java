@@ -223,8 +223,7 @@ public class LibraryModel {
             return "There is no song with this name and by this Artist\n";
         }
 
-        // set rating to 5
-        rateSong(title, artist, Rating.FIVE);
+
 
         // making sure it is not already on our list
         if (favoriteSongs.contains(sWeWant)) {
@@ -232,6 +231,13 @@ public class LibraryModel {
         } else {
             favoriteSongs.add(sWeWant);
         }
+
+        // set rating to 5 if it is not already
+        if (songsByRating.containsKey(Rating.FIVE) && songsByRating.get(Rating.FIVE).contains(sWeWant)) {
+            return "This song is already rated 5 and in the favorites list.\n";
+        }
+
+        rateSong(title, artist, Rating.FIVE);
         // if it hasnt returned by now we know it worked
         return "Successfully added song to the favorites list\n";
     }
@@ -244,16 +250,7 @@ public class LibraryModel {
         }
     }
 
-    // This function i dont think is required by the spec but makes sense if setting
-    // ratings
-    // @pre r != null
-    public ArrayList<Song> getSongsByRating(Rating r) {
-        if (songsByRating.containsKey(r)) {
-            return new ArrayList<Song>(songsByRating.get(r));
-        } else {
-            return null;
-        }
-    }
+
 
     // this function will take in details of a song and set its rating,
     // if the rating is 5 it will automatically get placed into the favorites
@@ -266,10 +263,7 @@ public class LibraryModel {
         // first set the rating to input
         sWeWant.setStars(rating);
 
-        // if rating == five automatically place in fav
-        if (rating == Rating.FIVE) {
-            addSongToFavorites(title, artist);
-        }
+
 
         // now add to our songs by rating hashmap
         if (songsByRating.containsKey(rating)) {
@@ -279,7 +273,23 @@ public class LibraryModel {
             tmp.add(new Song(sWeWant));
             songsByRating.put(rating, tmp); // create a new arraylist with new song obj to add to HashMap
         }
+
+        // if rating == five automatically place in fav
+        if (rating == Rating.FIVE && !favoriteSongs.contains(sWeWant)) {
+            addSongToFavorites(title, artist);
+        }
         return "Successfully rated song\n";
+    }
+
+    // This function i dont think is required by the spec but makes sense if setting
+    // ratings
+    // @pre r != null
+    public ArrayList<Song> getSongsByRating(Rating r) {
+        if (songsByRating.containsKey(r)) {
+            return new ArrayList<Song>(songsByRating.get(r));
+        } else {
+            return null;
+        }
     }
 
 }

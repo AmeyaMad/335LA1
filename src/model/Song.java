@@ -59,4 +59,19 @@ public class Song {
     public String toString() {
         return "Song - Title: " + title + ", Artist: " + artist + ", Album: " + album;
     }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Song song = (Song) o;
+        return this.title != null && this.title.equals(song.title) && this.artist != null
+                && this.artist.equals(song.artist) && this.album != null && this.album.equals(song.album);
+
+    }
 }
