@@ -180,6 +180,14 @@ public class LibraryModel {
             newSongs.add(sWeWant);
             songsByTitle.put(title, newSongs);
         }
+
+        if (songsByArtist.containsKey(artist)) {
+            songsByArtist.get(artist).add(sWeWant);
+        } else {
+            ArrayList<Song> tmp = new ArrayList<>();
+            tmp.add(sWeWant);
+            songsByArtist.put(artist, tmp);
+        }
         return true;
     }
 
@@ -201,7 +209,7 @@ public class LibraryModel {
         albumsByTitle.put(title, albums);
 
         // Add album to artist-based lookup
-        if (albumsByArtist.containsKey(title)) {
+        if (albumsByArtist.containsKey(a.getArtist())) {
             albumsByArtist.get(a.getArtist()).add(a);
         } else {
             albumsByArtist.put(a.getArtist(), albums);
