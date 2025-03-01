@@ -11,9 +11,9 @@ public class Main {
         lb.addSongToLibrary("Lullaby", "OneRepublic");
         // TODO implement view stuff here instead of just testing
 
-        // TODO WE NEED TO MAKE SURE THERE IS NO INFINITELOOP WHEN DOING FAVORITES AND
         // SETTING RATINGS
+        lb.rateSong("The Cave", "Mumford & Sons", Rating.FIVE);
         lb.addSongToFavorites("You Ain't Alone", "Alabama Shakes");
-        System.out.print(lb.getFavorites());
+        System.out.print(lb.getSongsByRatingString(Rating.FIVE));
     }
 }

@@ -60,7 +60,6 @@ public class Song {
         return "Song - Title: " + title + ", Artist: " + artist + ", Album: " + album;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {

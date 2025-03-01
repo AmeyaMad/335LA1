@@ -242,12 +242,23 @@ public class LibraryModel {
         return "Successfully added song to the favorites list\n";
     }
 
-    public String getFavorites() {
+    public ArrayList<Song> getFavorites() {
         if (favoriteSongs.isEmpty()) {
-            return "There are no songs in the favorites list\n";
+            return null;
         } else {
-            return favoriteSongs.toString();
+            return new ArrayList<>(favoriteSongs);
         }
+    }
+
+    public String getFavoritesString() {
+        if(getFavorites() == null){
+            return "There are no favorites\n";
+        }
+        StringBuilder sb = new StringBuilder();
+        for (Song s : favoriteSongs) {
+            sb.append(s.toString()).append("\n");
+        }
+        return sb.toString();
     }
 
 
@@ -290,6 +301,18 @@ public class LibraryModel {
         } else {
             return null;
         }
+    }
+
+    public String getSongsByRatingString(Rating r) {
+        if(getSongsByRating(r)==null) {
+            return "There are no songs of this rating\n";
+        }
+        ArrayList<Song> songs = songsByRating.get(r);
+        StringBuilder sb = new StringBuilder();
+        for (Song s : songs) {
+            sb.append(s.toString() + "\n");
+        }
+        return sb.toString();
     }
 
 }

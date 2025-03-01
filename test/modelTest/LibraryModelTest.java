@@ -142,6 +142,36 @@ public class LibraryModelTest {
     @Test
     public void testAddingSongToFavorite(){
         libraryModel.addSongToFavorites("You Ain't Alone", "Alabama Shakes");
+        assertEquals("Song - Title: You Ain't Alone, Artist: Alabama Shakes, Album: Boys & Girls\n", libraryModel.getFavoritesString());
+        assertEquals("Song - Title: You Ain't Alone, Artist: Alabama Shakes, Album: Boys & Girls\n", libraryModel.getSongsByRatingString(Rating.FIVE).toString());
+    }
 
+    @Test
+    public void testAddingSongToFavByRating5(){
+        libraryModel.rateSong("The Cave", "Mumford & Sons", Rating.FIVE);
+        libraryModel.addSongToFavorites("You Ain't Alone", "Alabama Shakes");
+        assertEquals("Song - Title: The Cave, Artist: Mumford & Sons, Album: Sigh No More\n" +
+                "Song - Title: You Ain't Alone, Artist: Alabama Shakes, Album: Boys & Girls\n", libraryModel.getSongsByRatingString(Rating.FIVE).toString());
+
+    }
+
+    @Test
+    public void testNoSongsInFavoriteOrOfRating(){
+        assertEquals("There are no songs of this rating\n", libraryModel.getSongsByRatingString(Rating.ONE));
+        assertEquals("There are no favorites\n", libraryModel.getFavoritesString());
+    }
+
+    @Test
+    public void testAddingNonexistentSongToFavoriteAndRating(){
+        assertEquals("There is no song with this name and by this Artist\n", libraryModel.addSongToFavorites("Flashing Lights", "Kanye West"));
+        assertEquals("There is no song that has this name by this artist\n", libraryModel.rateSong("All of the Lights", "Kanye West", Rating.FIVE));
+    }
+
+    @Test
+    public void testAddingSameSongToFavoriteAndRating(){
+        libraryModel.addSongToFavorites("The Cave", "Mumford & Sons");
+        assertEquals("This song is already in the favorites list\n", libraryModel.addSongToFavorites("The Cave", "Mumford & Sons"));
+        libraryModel.rateSong("Uh Oh", "Norah Jones", Rating.THREE);
+        assertEquals("Successfully rated song\n",libraryModel.rateSong("Uh Oh", "Norah Jones", Rating.THREE));
     }
 }
