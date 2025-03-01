@@ -10,6 +10,8 @@ public class Song {
     private String title;
     private String artist;
     private String album;
+    private Rating stars;
+
 
     /*
      * constructor so we can create song objects easily
@@ -44,6 +46,14 @@ public class Song {
 
     public String getAlbum() {
         return album;
+    }
+
+    public Rating getStars() {
+        return stars;
+    }
+
+    public void setStars(Rating stars) {
+        this.stars = stars;
     }
 
     @Override

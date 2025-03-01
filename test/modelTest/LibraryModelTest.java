@@ -24,7 +24,7 @@ public class LibraryModelTest {
 
     @Test
     public void testAddSongToLibraryWhenNotInStore() {
-        assertFalse(libraryModel.addSongToLibrary("YELLOWBRICKROAD", "IDK"));
+        assertEquals("This song is not in the Music Store\n", libraryModel.addSongToLibrary("YELLOWBRICKROAD", "IDK"));
     }
 
     @Test
@@ -42,12 +42,12 @@ public class LibraryModelTest {
     // this will be for adding 2 of the same song
     public void testAddingSameSong2Times() {
         libraryModel.addSongToLibrary("Lullaby", "Leonard Cohen");
-        assertFalse(libraryModel.addSongToLibrary("Lullaby", "Leonard Cohen"));
+        assertEquals("This song is already in the list\n", libraryModel.addSongToLibrary("Lullaby", "Leonard Cohen"));
     }
 
     @Test
     public void testAddingSongRightNameWrongArtist() {
-        assertFalse(libraryModel.addSongToLibrary("After Party", "Adele"));
+        assertEquals( "There is no song of this name by this artist\n", libraryModel.addSongToLibrary("After Party", "Adele"));
     }
 
     @Test
