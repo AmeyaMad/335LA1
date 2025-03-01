@@ -47,7 +47,7 @@ public class LibraryModelTest {
 
     @Test
     public void testAddingSongRightNameWrongArtist() {
-        assertEquals( "There is no song of this name by this artist\n", libraryModel.addSongToLibrary("After Party", "Adele"));
+        assertEquals( "This song is not in the Music Store\n", libraryModel.addSongToLibrary("After Party", "Adele"));
     }
 
     @Test
@@ -139,4 +139,9 @@ public class LibraryModelTest {
         assertFalse(libraryModel.addAlbumToLibrary("Fight for Your Mind"));
     }
 
+    @Test
+    public void testAddingSongToFavorite(){
+        libraryModel.addSongToFavorites("You Ain't Alone", "Alabama Shakes");
+
+    }
 }

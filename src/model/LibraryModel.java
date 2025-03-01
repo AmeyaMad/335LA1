@@ -159,19 +159,10 @@ public class LibraryModel {
     // now we need new logic for adding and removing songs/albums
     // @pre title != null
     public String addSongToLibrary(String title, String artist) {
-        if (musicStore.getSongsByTitle(title) == null) {
-            return "This song is not in the Music Store\n";
-        }
-        ArrayList<Song> songs = musicStore.getSongsByTitle(title);
-        Song sWeWant = null;
-        for (Song s : songs) {
-            if (s.getArtist().equals(artist)) {
-                sWeWant = s;
-            }
-        }
+        Song sWeWant = HelperFunctions.getSongByTitleAndArtist(title, artist);
 
         if (sWeWant == null) {
-            return "There is no song of this name by this artist\n";
+            return "This song is not in the Music Store\n";
         }
 
         if (songsByTitle.containsKey(title)) {
@@ -223,80 +214,72 @@ public class LibraryModel {
         return true;
     }
 
-
-    //this will be used to add songs to favorite
-    //@pre title != null && artist != null
+    // this will be used to add songs to favorite
+    // @pre title != null && artist != null
     public String addSongToFavorites(String title, String artist) {
-        //using helper function
+        // using helper function
         Song sWeWant = HelperFunctions.getSongByTitleAndArtist(title, artist);
         if (sWeWant == null) {
             return "There is no song with this name and by this Artist\n";
         }
 
-        //set rating to 5
+        // set rating to 5
         rateSong(title, artist, Rating.FIVE);
 
-        //making sure it is not already on our list
-        if(favoriteSongs.contains(sWeWant)) {
+        // making sure it is not already on our list
+        if (favoriteSongs.contains(sWeWant)) {
             return "This song is already in the favorites list\n";
-        }
-        else{
+        } else {
             favoriteSongs.add(sWeWant);
         }
-        //if it hasnt returned by now we know it worked
+        // if it hasnt returned by now we know it worked
         return "Successfully added song to the favorites list\n";
     }
 
-    //This function i dont think is required by the spec but makes sense if setting ratings
-    //@pre r != null
+    public String getFavorites() {
+        if (favoriteSongs.isEmpty()) {
+            return "There are no songs in the favorites list\n";
+        } else {
+            return favoriteSongs.toString();
+        }
+    }
+
+    // This function i dont think is required by the spec but makes sense if setting
+    // ratings
+    // @pre r != null
     public ArrayList<Song> getSongsByRating(Rating r) {
         if (songsByRating.containsKey(r)) {
             return new ArrayList<Song>(songsByRating.get(r));
-        }
-        else{
+        } else {
             return null;
         }
     }
 
-    //this function will take in details of a song and set its rating,
+    // this function will take in details of a song and set its rating,
     // if the rating is 5 it will automatically get placed into the favorites
-    //@pre title != null && artist != null && rating != null
+    // @pre title != null && artist != null && rating != null
     public String rateSong(String title, String artist, Rating rating) {
-        if(musicStore.getSongsByTitle(title) == null) {
-            return "This song is not in the Music Store\n";
-        }
-        ArrayList<Song> songs = musicStore.getSongsByTitle(title);
-        Song sWeWant = null;
-        for(Song s : songs) {
-            if (s.getArtist().equals(artist)) {
-                sWeWant = s;
-            }
-        }
+        Song sWeWant = HelperFunctions.getSongByTitleAndArtist(title, artist);
         if (sWeWant == null) {
-            return "There is no song of this name by this artist\n";
+            return "There is no song that has this name by this artist\n";
         }
-        //first set the rating to input
+        // first set the rating to input
         sWeWant.setStars(rating);
 
-        //if rating == five automatically place in fav
-        if(rating == Rating.FIVE) {
+        // if rating == five automatically place in fav
+        if (rating == Rating.FIVE) {
             addSongToFavorites(title, artist);
         }
 
-        //now add to our songs by rating hashmap
-        if(songsByRating.containsKey(rating)) {
-            songsByRating.get(rating).add(new Song(sWeWant));   //to keep encapsulation
-        }
-        else{
+        // now add to our songs by rating hashmap
+        if (songsByRating.containsKey(rating)) {
+            songsByRating.get(rating).add(new Song(sWeWant)); // to keep encapsulation
+        } else {
             ArrayList<Song> tmp = new ArrayList<>();
             tmp.add(new Song(sWeWant));
-            songsByRating.put(rating, tmp);     //create a new arraylist with new song obj to add to HashMap
+            songsByRating.put(rating, tmp); // create a new arraylist with new song obj to add to HashMap
         }
         return "Successfully rated song\n";
     }
-
-
-
-
 
 }

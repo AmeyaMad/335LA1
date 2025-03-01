@@ -12,7 +12,6 @@ public class Song {
     private String album;
     private Rating stars;
 
-
     /*
      * constructor so we can create song objects easily
      * 
