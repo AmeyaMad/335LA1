@@ -1,3 +1,8 @@
+//file: HelperFunctions.java
+//Author: Ameya Madhugiri
+//Purpose:The purpose of this class is to act in a similar manner as the Math. class
+// and to provide helper comments to make sure there is no issues with the duplicated
+//code antipattern
 package src.model;
 
 import java.util.ArrayList;
@@ -12,6 +17,8 @@ public class HelperFunctions {
     private HelperFunctions() {
     }
 
+    //this function takes in a title and artist and returns the song from the music store
+    //@pre title!= null && artist != null
     public static Song getSongByTitleAndArtist(String title, String artist) {
         // making a music store
         MusicStore ms = new MusicStore("albums");
@@ -38,11 +45,14 @@ public class HelperFunctions {
         return new Song(sWeWant);
     }
 
+    //This function takes in a title and returns an album object of the same name
+    //@pre title != null
     public static Album getAlbumByTitle(String title) {
         MusicStore ms = new MusicStore("albums");
         if (ms.getAlbumsByTitle(title) == null) {
             return null;
         }
+        //uses same idea as function above to return an album
         ArrayList<Album> albums = ms.getAlbumsByTitle(title);
         Album album = null;
         for (Album a : albums) {
@@ -50,7 +60,7 @@ public class HelperFunctions {
                 album = a;
             }
         }
-        return album;
+        return album;       //since albums are immutable dont need ot worry about it
     }
 
 }

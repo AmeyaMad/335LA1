@@ -17,7 +17,6 @@ public class PlayList {
      * 
      * @pre title != null
      */
-
     public PlayList(String name) {
         this.name = name;
         this.songs = new ArrayList<Song>();
@@ -33,6 +32,7 @@ public class PlayList {
         return new ArrayList<>(songs);
     }
 
+    //builds a nice string for all songs in playlist
     public String getSongsString(){
         ArrayList<Song> listOfSongs = this.getSongs();
         StringBuilder sb = new StringBuilder();
@@ -46,7 +46,7 @@ public class PlayList {
     }
 
     // Methods to modify playlist
-    // TODO: COMMENT THESE AND ADD MORE METHODS
+
     //Adding songs to playlist
     //@pre s != null
     public void addSong(Song s) {
@@ -61,6 +61,7 @@ public class PlayList {
         songs.remove(s);
     }
 
+    //TODO CURRENT WORKING ON FUNCTINOALITY
     public void addAlbum(String title) {
         this.name = name;
     }

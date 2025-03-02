@@ -142,16 +142,23 @@ public class LibraryModelTest {
     @Test
     public void testAddingSongToFavorite(){
         libraryModel.addSongToFavorites("You Ain't Alone", "Alabama Shakes");
-        assertEquals("Song - Title: You Ain't Alone, Artist: Alabama Shakes, Album: Boys & Girls\n", libraryModel.getFavoritesString());
-        assertEquals("Song - Title: You Ain't Alone, Artist: Alabama Shakes, Album: Boys & Girls\n", libraryModel.getSongsByRatingString(Rating.FIVE).toString());
+        String exFav = "=== Favorites ===\n" +
+                "Song - Title: You Ain't Alone, Artist: Alabama Shakes, Album: Boys & Girls\n";
+
+        String exRate = "=== Songs of Rating FIVE ===\n" +
+                "Song - Title: You Ain't Alone, Artist: Alabama Shakes, Album: Boys & Girls\n";
+        assertEquals(exFav, libraryModel.getFavoritesString());
+        assertEquals(exRate, libraryModel.getSongsByRatingString(Rating.FIVE).toString());
     }
 
     @Test
     public void testAddingSongToFavByRating5(){
         libraryModel.rateSong("The Cave", "Mumford & Sons", Rating.FIVE);
         libraryModel.addSongToFavorites("You Ain't Alone", "Alabama Shakes");
-        assertEquals("Song - Title: The Cave, Artist: Mumford & Sons, Album: Sigh No More\n" +
-                "Song - Title: You Ain't Alone, Artist: Alabama Shakes, Album: Boys & Girls\n", libraryModel.getSongsByRatingString(Rating.FIVE).toString());
+        String ex = "=== Songs of Rating FIVE ===\n" +
+                "Song - Title: The Cave, Artist: Mumford & Sons, Album: Sigh No More\n" +
+                "Song - Title: You Ain't Alone, Artist: Alabama Shakes, Album: Boys & Girls\n";
+        assertEquals(ex, libraryModel.getSongsByRatingString(Rating.FIVE));
 
     }
 

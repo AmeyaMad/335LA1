@@ -122,7 +122,8 @@ public class MusicStore {
 
     // now making getter functions for all the maps
 
-    // gets song by title
+    // gets arraylist of song by title
+    //@pre title != null
     public ArrayList<Song> getSongsByTitle(String title) {
         if (songsByTitle.containsKey(title)) {
             return new ArrayList<Song>(songsByTitle.get(title));
@@ -131,7 +132,8 @@ public class MusicStore {
         }
     }
 
-    // gets song by artist
+    // gets arraylist of song by artist
+    //@pre artist != null
     public ArrayList<Song> getSongsByArtist(String artist) {
         if (songsByArtist.containsKey(artist)) {
             return new ArrayList<Song>(songsByArtist.get(artist));
@@ -141,7 +143,8 @@ public class MusicStore {
 
     }
 
-    // gets albums by title
+    // gets arraylist of albums by title
+    //@pre title != null
     public ArrayList<Album> getAlbumsByTitle(String title) {
         if (albumsByTitle.containsKey(title)) {
             return new ArrayList<Album>(albumsByTitle.get(title));
@@ -150,7 +153,8 @@ public class MusicStore {
         }
     }
 
-    // gets albums by artist
+    // gets arraylsit of albums by artist
+    //@pre artist != null
     public ArrayList<Album> getAlbumsByArtist(String artist) {
         if (albumsByArtist.containsKey(artist)) {
             return new ArrayList<Album>(albumsByArtist.get(artist));
@@ -163,6 +167,7 @@ public class MusicStore {
     // ArrayList.toString() stinks!
 
     // string for songs by title
+    //@pre title != null
     public String getSongsByTitleString(String title) {
         if (getSongsByTitle(title) == null) {
             return "This Song is not in the songs list";
@@ -175,6 +180,7 @@ public class MusicStore {
     }
 
     // string for songs by artist
+    //@pre artist != null
     public String getSongsByArtistString(String artist) {
         if (getSongsByArtist(artist) == null) {
             return "There are no songs by this artist";
@@ -187,6 +193,7 @@ public class MusicStore {
     }
 
     // string for albums by title
+    //@pre title != null
     public String getAlbumsByTitleString(String title) {
         if (getAlbumsByTitle(title) == null) {
             return "There are no albums of this name";
@@ -199,6 +206,7 @@ public class MusicStore {
     }
 
     // string for albums by artist
+    //@pre artist != null
     public String getAlbumsByArtistString(String artist) {
         if (getAlbumsByArtist(artist) == null) {
             return "There are no albums by this artist";
@@ -209,7 +217,4 @@ public class MusicStore {
         }
         return sb.toString();
     }
-
-    // TODO HANDLE SITUATION WHEN LIST IS EMPTY PRINT STATEMENT
-
 }

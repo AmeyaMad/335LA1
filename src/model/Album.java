@@ -2,6 +2,7 @@
 //  author: Ameya Madhugiri
 //  purpose: This class will represent an album and will hold all the songs within it along with
 //              the genre and the artist
+//  This class is also immutable
 package src.model;
 
 import java.util.ArrayList;
@@ -43,6 +44,7 @@ public class Album {
         return new ArrayList<Song>(songs);
     }
 
+    //over riding to string to make sure it prints information
     @Override
     public String toString() {
         StringBuilder out = new StringBuilder("Album: " + title + ", Artist: " + artist + ", Genre: " + genre + "\n");

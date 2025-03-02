@@ -49,6 +49,7 @@ public class LibraryModel {
     // now making getter functions for all the maps
 
     // gets song by title
+    //@pre title != null
     public ArrayList<Song> getSongsByTitle(String title) {
         if (songsByTitle.containsKey(title)) {
             return new ArrayList<Song>(songsByTitle.get(title));
@@ -58,6 +59,7 @@ public class LibraryModel {
     }
 
     // gets song by artist
+    //@pre artist != null
     public ArrayList<Song> getSongsByArtist(String artist) {
         if (songsByArtist.containsKey(artist)) {
             return new ArrayList<Song>(songsByArtist.get(artist));
@@ -68,6 +70,7 @@ public class LibraryModel {
     }
 
     // gets albums by title
+    //@pre title != null
     public ArrayList<Album> getAlbumsByTitle(String title) {
         if (albumsByTitle.containsKey(title)) {
             return new ArrayList<Album>(albumsByTitle.get(title));
@@ -77,6 +80,7 @@ public class LibraryModel {
     }
 
     // gets albums by artist
+    //@pre artist != null
     public ArrayList<Album> getAlbumsByArtist(String artist) {
         if (albumsByArtist.containsKey(artist)) {
             return new ArrayList<Album>(albumsByArtist.get(artist));
@@ -86,6 +90,7 @@ public class LibraryModel {
     }
 
     // adding in playlist function
+    //@pre name != null
     public ArrayList<Song> getPlaylistByName(String name) {
         if (!playlistByName.containsKey(name)) {
             return null;
@@ -97,6 +102,7 @@ public class LibraryModel {
     // ArrayList.toString() stinks!
 
     // string for songs by title
+    //@pre title != null
     public String getSongsByTitleString(String title) {
         if (getSongsByTitle(title) == null) {
             return "This Song is not in the songs list\n";
@@ -109,6 +115,7 @@ public class LibraryModel {
     }
 
     // string for songs by artist
+    //@pre artist != null
     public String getSongsByArtistString(String artist) {
         if (getSongsByArtist(artist) == null) {
             return "There are no songs by this artist\n";
@@ -121,6 +128,7 @@ public class LibraryModel {
     }
 
     // string for albums by title
+    //@pre title != null
     public String getAlbumsByTitleString(String title) {
         if (getAlbumsByTitle(title) == null) {
             return "There are no albums of this name\n";
@@ -133,6 +141,7 @@ public class LibraryModel {
     }
 
     // string for albums by artist
+    //@pre artist != null
     public String getAlbumsByArtistString(String artist) {
         if (getAlbumsByArtist(artist) == null) {
             return "There are no albums by this artist\n";
@@ -145,6 +154,7 @@ public class LibraryModel {
     }
 
     // adding in playlist function for string
+    //@pre title != null
     public String getPlaylistByNameString(String title) {
         if (getPlaylistByName(title) == null) {
             return "There are no playlists by this title\n";
@@ -227,8 +237,6 @@ public class LibraryModel {
             return "There is no song with this name and by this Artist\n";
         }
 
-
-
         // making sure it is not already on our list
         if (favoriteSongs.contains(sWeWant)) {
             return "This song is already in the favorites list\n";
@@ -246,6 +254,8 @@ public class LibraryModel {
         return "Successfully added song to the favorites list\n";
     }
 
+
+    //this will return an arraylist of all favorites
     public ArrayList<Song> getFavorites() {
         if (favoriteSongs.isEmpty()) {
             return null;
@@ -254,11 +264,13 @@ public class LibraryModel {
         }
     }
 
+    //this is the more useful function as it returns all the favorite songs in a nice format
     public String getFavoritesString() {
         if(getFavorites() == null){
             return "There are no favorites\n";
         }
         StringBuilder sb = new StringBuilder();
+        sb.append("=== Favorites ===\n");
         for (Song s : favoriteSongs) {
             sb.append(s.toString()).append("\n");
         }
@@ -307,12 +319,15 @@ public class LibraryModel {
         }
     }
 
+    //this function takes in a rating and returns a nice strng with all songs of that rating
+    //@pre r != null
     public String getSongsByRatingString(Rating r) {
         if(getSongsByRating(r)==null) {
             return "There are no songs of this rating\n";
         }
         ArrayList<Song> songs = songsByRating.get(r);
         StringBuilder sb = new StringBuilder();
+        sb.append("=== Songs of Rating " + r + " ===\n");
         for (Song s : songs) {
             sb.append(s.toString() + "\n");
         }
