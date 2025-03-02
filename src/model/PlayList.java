@@ -62,7 +62,17 @@ public class PlayList {
     }
 
     //TODO CURRENT WORKING ON FUNCTINOALITY
-    public void addAlbum(String title) {
-        this.name = name;
+    public String addAlbum(String title) {
+        Album a = HelperFunctions.getAlbumByTitle(title);
+        if(a == null) {
+            return "Album does not exist in Music Store";
+        }
+        for(Song song : a.getSongs()) {
+            if(songs.contains(song)) {
+                continue;
+            }
+            songs.add(new Song(song));
+        }
+        return "Album added";
     }
 }
