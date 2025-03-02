@@ -21,7 +21,9 @@ import src.view.*;
 
 public class Main {
     public static void main(String[] args) {
-        View view = new View(); // Create and start the View
+        MusicStore ms = new MusicStore("albums");
+        LibraryModel lib = new LibraryModel(ms);
+        View view = new View(ms, lib); // Create and start the View
         view.start();
     }
 }

@@ -206,8 +206,7 @@ public class LibraryModelTest {
         String ex = "=== Albums List ===\n" +
                 "Album: 19, Artist: Adele\n" +
                 "Album: Don't Mess With the Dragon, Artist: Ozomatli\n" +
-                "Album: 21, Artist: Adele\n" +
-                "Album: 19, Artist: Adele\n";
+                "Album: 21, Artist: Adele\n";
         assertEquals(ex, libraryModel.listAllAlbumsString());
     }
 
@@ -267,6 +266,19 @@ public class LibraryModelTest {
                 "Song - Title: One and Only, Artist: Adele, Album: 21\n";
         assertEquals(ex, libraryModel.getPlaylistByNameString("My Playlist1"));
 
+    }
+
+    @Test
+    public void testListAllArtistsString() {
+        libraryModel.addAlbumToLibrary("21");
+        libraryModel.addAlbumToLibrary("19");
+        libraryModel.addAlbumToLibrary("Don't Mess With the Dragon");
+
+        String expected = "=== Artists List ===\n" +
+                "Ozomatli\n" +
+                "Adele\n";
+
+        assertEquals(expected, libraryModel.listAllArtistsString());
     }
 
 

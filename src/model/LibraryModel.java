@@ -270,7 +270,9 @@ public class LibraryModel {
         if (albumsByArtist.containsKey(a.getArtist())) {
             albumsByArtist.get(a.getArtist()).add(a);
         } else {
-            albumsByArtist.put(a.getArtist(), albums);
+            ArrayList<Album> newAlbumList = new ArrayList<>();
+            newAlbumList.add(a);
+            albumsByArtist.put(a.getArtist(), newAlbumList);
         }
 
         for(Song s : a.getSongs()) {
@@ -434,6 +436,20 @@ public class LibraryModel {
 
         return sb.toString();
     }
+
+    //needs to be able to lsit all artist so doing here
+    public String listAllArtistsString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("=== Artists List ===\n");
+
+        for (String artist : songsByArtist.keySet()) {
+            sb.append(artist).append("\n");
+        }
+
+        return sb.toString();
+    }
+
+
 
 
 
