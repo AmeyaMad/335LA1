@@ -211,5 +211,63 @@ public class LibraryModelTest {
         assertEquals(ex, libraryModel.listAllAlbumsString());
     }
 
+    @Test
+    public void addingSongToPlaylist(){
+        libraryModel.createPlaylist("My Playlist");
+        libraryModel.addSongToPlaylist("Hundido En Un Rincon", "Mana", "My Playlist");
+//        System.out.print(libraryModel.getPlaylistByNameString("My Playlist"));
+        String ex = "=== Playlist: My Playlist ===\n" +
+                "Song - Title: Hundido En Un Rincon, Artist: Mana, Album: Cuando Los Angeles Lloran\n";
+        assertEquals(ex, libraryModel.getPlaylistByNameString("My Playlist"));
+    }
+
+    @Test
+    public void testPlaylistDNE(){
+        libraryModel.createPlaylist("My Playlist1");
+//        System.out.print(libraryModel.getPlaylistByNameString("My"));
+        String ex = "There are no playlists by this title\n";
+        assertEquals(ex, libraryModel.getPlaylistByNameString("My"));
+    }
+
+    @Test
+    public void testMultiplePlaylists(){
+        libraryModel.createPlaylist("My Playlist1");
+        libraryModel.createPlaylist("My Playlist2");
+        libraryModel.createPlaylist("My Playlist3");
+//        System.out.print(libraryModel.listAllPlaylistsString());
+        String ex = "=== Playlists List ===\n" +
+                "Playlist: My Playlist1\n" +
+                "Playlist: My Playlist2\n" +
+                "Playlist: My Playlist3\n";
+        assertEquals(ex, libraryModel.listAllPlaylistsString());
+    }
+
+    @Test
+    public void testAddingSongToPlaylistThatDNE(){
+        String ex = "Playlist Not Found";
+        assertEquals(ex, libraryModel.addSongToPlaylist("One and Only", "Adele", "DNE PLAYLIST"));
+    }
+
+    @Test
+    public void testAddingDNESongToPlaylist(){
+        libraryModel.createPlaylist("My Playlist1");
+        String ex = "Song Not Found";
+        assertEquals(ex, libraryModel.addSongToPlaylist("Only One", "Kanye", "My Playlist1"));
+    }
+
+    @Test
+    public void testRemovingSongFromPlaylist(){
+        libraryModel.createPlaylist("My Playlist1");
+        libraryModel.addSongToPlaylist("One and Only", "Adele", "My Playlist1");
+        libraryModel.addSongToPlaylist("I Found a Boy", "Adele", "My Playlist1");
+
+        libraryModel.removeSongFromPlaylist("I Found a Boy", "Adele", "My Playlist1");
+//        System.out.print(libraryModel.getPlaylistByNameString("My Playlist1"));
+        String ex = "=== Playlist: My Playlist1 ===\n" +
+                "Song - Title: One and Only, Artist: Adele, Album: 21\n";
+        assertEquals(ex, libraryModel.getPlaylistByNameString("My Playlist1"));
+
+    }
+
 
 }

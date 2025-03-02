@@ -210,7 +210,7 @@ public class LibraryModel {
             return "There are no playlists by this title\n";
         }
         StringBuilder sb = new StringBuilder();
-        sb.append("=== Playlist ").append(title).append(" ===\n");
+        sb.append("=== Playlist: ").append(title).append(" ===\n");
         for (Song s : getPlaylistByName(title).getSongs()) {
             sb.append(s.toString()).append("\n");
         }
