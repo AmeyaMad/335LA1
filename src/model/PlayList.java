@@ -10,15 +10,7 @@ public class PlayList {
     private String name;
     private ArrayList<Song> songs;
 
-    /*
-     * Constructor to make the creation of a playlist easier if list already exists
-     * 
-     * @pre name != null
-     */
-    public PlayList(String name, ArrayList<Song> songs) {
-        this.name = name;
-        this.songs = new ArrayList<>(songs);
-    }
+
 
     /*
      * Constructor if we want an empty playlist
@@ -28,6 +20,7 @@ public class PlayList {
 
     public PlayList(String name) {
         this.name = name;
+        this.songs = new ArrayList<Song>();
     }
 
     // auto gen getter for name
@@ -35,14 +28,40 @@ public class PlayList {
         return name;
     }
 
-    // Methods to modify playlist
-    // TODO: COMMENT THESE AND ADD MORE METHODS
-    public void addSong(Song s) {
-        songs.add(new Song(s));
+    //get an arraylist of all songs in list
+    public ArrayList<Song> getSongs() {
+        return new ArrayList<>(songs);
     }
 
+    public String getSongsString(){
+        ArrayList<Song> listOfSongs = this.getSongs();
+        StringBuilder sb = new StringBuilder();
+        for (Song song : listOfSongs) {
+            sb.append("Title: ").append(song.getTitle())
+                    .append(", Artist: ").append(song.getArtist())
+                    .append(", Album: ").append(song.getAlbum())
+                    .append("\n");
+        }
+        return sb.toString();
+    }
+
+    // Methods to modify playlist
+    // TODO: COMMENT THESE AND ADD MORE METHODS
+    //Adding songs to playlist
+    //@pre s != null
+    public void addSong(Song s) {
+        if(!songs.contains(s)) {
+            songs.add(new Song(s)); //keeping encapsulation
+        }
+    }
+
+    //removing song from playlist
+    //@pre s != null
     public void removeSong(Song s) {
         songs.remove(s);
     }
 
+    public void addAlbum(String title) {
+        this.name = name;
+    }
 }

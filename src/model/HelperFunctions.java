@@ -38,4 +38,19 @@ public class HelperFunctions {
         return new Song(sWeWant);
     }
 
+    public static Album getAlbumByTitle(String title) {
+        MusicStore ms = new MusicStore("albums");
+        if (ms.getAlbumsByTitle(title) == null) {
+            return null;
+        }
+        ArrayList<Album> albums = ms.getAlbumsByTitle(title);
+        Album album = null;
+        for (Album a : albums) {
+            if (a.getTitle().equals(title)) {
+                album = a;
+            }
+        }
+        return album;
+    }
+
 }

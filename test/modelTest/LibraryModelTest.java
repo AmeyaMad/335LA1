@@ -174,4 +174,35 @@ public class LibraryModelTest {
         libraryModel.rateSong("Uh Oh", "Norah Jones", Rating.THREE);
         assertEquals("Successfully rated song\n",libraryModel.rateSong("Uh Oh", "Norah Jones", Rating.THREE));
     }
+
+    @Test
+    public void testListAllSongsString(){
+        libraryModel.addAlbumToLibrary("Begin Again");
+        libraryModel.addSongToLibrary("The Cave", "Mumford & Sons");
+        String ex = "=== Songs List ===\n" +
+                "Title: It Was You, Artist: Norah Jones, Album: Begin Again\n" +
+                "Title: Wintertime, Artist: Norah Jones, Album: Begin Again\n" +
+                "Title: A Song with No Name, Artist: Norah Jones, Album: Begin Again\n" +
+                "Title: Just a Little Bit, Artist: Norah Jones, Album: Begin Again\n" +
+                "Title: Begin Again, Artist: Norah Jones, Album: Begin Again\n" +
+                "Title: Uh Oh, Artist: Norah Jones, Album: Begin Again\n" +
+                "Title: The Cave, Artist: Mumford & Sons, Album: Sigh No More\n" +
+                "Title: My Heart Is Full, Artist: Norah Jones, Album: Begin Again\n";
+        assertEquals(ex, libraryModel.listAllSongsString());
+    }
+
+    @Test
+    public void testListAllAlbumsString(){
+        libraryModel.addAlbumToLibrary("21");
+        libraryModel.addAlbumToLibrary("19");
+        libraryModel.addAlbumToLibrary("Don't Mess With the Dragon");
+        String ex = "=== Albums List ===\n" +
+                "Album: 19, Artist: Adele\n" +
+                "Album: Don't Mess With the Dragon, Artist: Ozomatli\n" +
+                "Album: 21, Artist: Adele\n" +
+                "Album: 19, Artist: Adele\n";
+        assertEquals(ex, libraryModel.listAllAlbumsString());
+    }
+
+
 }

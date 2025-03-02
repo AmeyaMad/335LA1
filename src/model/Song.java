@@ -73,4 +73,13 @@ public class Song {
                 && this.artist.equals(song.artist) && this.album != null && this.album.equals(song.album);
 
     }
+
+     //not sure if this is needed, will check later but when I looked online for why things are not removing it said
+    //equals and hashcode may need to be overwritten, equals is already done if itm keeps being an issue
+    //TODO uncomment this if needed later on
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(title, artist, album); // Include all fields used in equals()
+//    }
+
 }

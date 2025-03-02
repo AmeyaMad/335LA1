@@ -211,6 +211,10 @@ public class LibraryModel {
         } else {
             albumsByArtist.put(a.getArtist(), albums);
         }
+
+        for(Song s : a.getSongs()) {
+            addSongToLibrary(s.getTitle(), s.getArtist());
+        }
         return true;
     }
 
@@ -314,5 +318,58 @@ public class LibraryModel {
         }
         return sb.toString();
     }
+
+
+    //need functions to list all songs, albums, and playlists
+    //will return a string with all songs in the Library
+    public String listAllSongsString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("=== Songs List ===\n");
+
+        for (String title : songsByTitle.keySet()) {
+            ArrayList<Song> songs = songsByTitle.get(title); // gets list of songs with this title
+
+            for (Song song : songs) { // add to string for each song
+                sb.append("Title: ").append(song.getTitle())
+                        .append(", Artist: ").append(song.getArtist())
+                        .append(", Album: ").append(song.getAlbum())
+                        .append("\n");
+            }
+        }
+        return sb.toString();
+    }
+
+    //will return a string with all Albums in the Library
+    public String listAllAlbumsString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("=== Albums List ===\n");
+
+        for (String albumName : albumsByTitle.keySet()) {
+            ArrayList<Album> albums = albumsByTitle.get(albumName); // gets list of albums with this title
+
+            for (Album album : albums) { // add to string for each album
+                sb.append("Album: ").append(album.getTitle())
+                        .append(", Artist: ").append(album.getArtist())
+                        .append("\n");
+            }
+        }
+
+        return sb.toString();
+    }
+
+    //will return a string with all Albums in the Library
+    public String listAllPlaylistsString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("=== Playlists List ===\n");
+
+        for (String playlistName : playlistByName.keySet()) {
+            sb.append("Playlist: ").append(playlistName).append("\n");
+        }
+
+        return sb.toString();
+    }
+
+
+
 
 }
