@@ -47,7 +47,7 @@ public class LibraryModelTest {
 
     @Test
     public void testAddingSongRightNameWrongArtist() {
-        assertEquals( "This song is not in the Music Store\n", libraryModel.addSongToLibrary("After Party", "Adele"));
+        assertEquals("This song is not in the Music Store\n", libraryModel.addSongToLibrary("After Party", "Adele"));
     }
 
     @Test
@@ -84,7 +84,7 @@ public class LibraryModelTest {
     }
 
     @Test
-    public void testGetAlbumsByNameEmpty(){
+    public void testGetAlbumsByNameEmpty() {
         assertEquals("There are no albums of this name\n", libraryModel.getAlbumsByTitleString("na"));
     }
 
@@ -125,22 +125,22 @@ public class LibraryModelTest {
 
     @Test
     public void testGetAlbumsByArtistEmpty() {
-       assertEquals("There are no albums by this artist\n", libraryModel.getAlbumsByArtistString("na"));
+        assertEquals("There are no albums by this artist\n", libraryModel.getAlbumsByArtistString("na"));
     }
 
     @Test
-    public void testAddingAlbumNotInLib(){
+    public void testAddingAlbumNotInLib() {
         assertFalse(libraryModel.addAlbumToLibrary("Graduation"));
     }
 
     @Test
-    public void testAddingSameAlbum2times(){
+    public void testAddingSameAlbum2times() {
         libraryModel.addAlbumToLibrary("Fight for Your Mind");
         assertFalse(libraryModel.addAlbumToLibrary("Fight for Your Mind"));
     }
 
     @Test
-    public void testAddingSongToFavorite(){
+    public void testAddingSongToFavorite() {
         libraryModel.addSongToFavorites("You Ain't Alone", "Alabama Shakes");
         String exFav = "=== Favorites ===\n" +
                 "Song - Title: You Ain't Alone, Artist: Alabama Shakes, Album: Boys & Girls\n";
@@ -152,7 +152,7 @@ public class LibraryModelTest {
     }
 
     @Test
-    public void testAddingSongToFavByRating5(){
+    public void testAddingSongToFavByRating5() {
         libraryModel.rateSong("The Cave", "Mumford & Sons", Rating.FIVE);
         libraryModel.addSongToFavorites("You Ain't Alone", "Alabama Shakes");
         String ex = "=== Songs of Rating FIVE ===\n" +
@@ -163,27 +163,30 @@ public class LibraryModelTest {
     }
 
     @Test
-    public void testNoSongsInFavoriteOrOfRating(){
+    public void testNoSongsInFavoriteOrOfRating() {
         assertEquals("There are no songs of this rating\n", libraryModel.getSongsByRatingString(Rating.ONE));
         assertEquals("There are no favorites\n", libraryModel.getFavoritesString());
     }
 
     @Test
-    public void testAddingNonexistentSongToFavoriteAndRating(){
-        assertEquals("There is no song with this name and by this Artist\n", libraryModel.addSongToFavorites("Flashing Lights", "Kanye West"));
-        assertEquals("There is no song that has this name by this artist\n", libraryModel.rateSong("All of the Lights", "Kanye West", Rating.FIVE));
+    public void testAddingNonexistentSongToFavoriteAndRating() {
+        assertEquals("There is no song with this name and by this Artist\n",
+                libraryModel.addSongToFavorites("Flashing Lights", "Kanye West"));
+        assertEquals("There is no song that has this name by this artist\n",
+                libraryModel.rateSong("All of the Lights", "Kanye West", Rating.FIVE));
     }
 
     @Test
-    public void testAddingSameSongToFavoriteAndRating(){
+    public void testAddingSameSongToFavoriteAndRating() {
         libraryModel.addSongToFavorites("The Cave", "Mumford & Sons");
-        assertEquals("This song is already in the favorites list\n", libraryModel.addSongToFavorites("The Cave", "Mumford & Sons"));
+        assertEquals("This song is already in the favorites list\n",
+                libraryModel.addSongToFavorites("The Cave", "Mumford & Sons"));
         libraryModel.rateSong("Uh Oh", "Norah Jones", Rating.THREE);
-        assertEquals("Successfully rated song\n",libraryModel.rateSong("Uh Oh", "Norah Jones", Rating.THREE));
+        assertEquals("Successfully rated song\n", libraryModel.rateSong("Uh Oh", "Norah Jones", Rating.THREE));
     }
 
     @Test
-    public void testListAllSongsString(){
+    public void testListAllSongsString() {
         libraryModel.addAlbumToLibrary("Begin Again");
         libraryModel.addSongToLibrary("The Cave", "Mumford & Sons");
         String ex = "=== Songs List ===\n" +
@@ -199,7 +202,7 @@ public class LibraryModelTest {
     }
 
     @Test
-    public void testListAllAlbumsString(){
+    public void testListAllAlbumsString() {
         libraryModel.addAlbumToLibrary("21");
         libraryModel.addAlbumToLibrary("19");
         libraryModel.addAlbumToLibrary("Don't Mess With the Dragon");
@@ -211,29 +214,29 @@ public class LibraryModelTest {
     }
 
     @Test
-    public void addingSongToPlaylist(){
+    public void addingSongToPlaylist() {
         libraryModel.createPlaylist("My Playlist");
         libraryModel.addSongToPlaylist("Hundido En Un Rincon", "Mana", "My Playlist");
-//        System.out.print(libraryModel.getPlaylistByNameString("My Playlist"));
+        // System.out.print(libraryModel.getPlaylistByNameString("My Playlist"));
         String ex = "=== Playlist: My Playlist ===\n" +
                 "Song - Title: Hundido En Un Rincon, Artist: Mana, Album: Cuando Los Angeles Lloran\n";
         assertEquals(ex, libraryModel.getPlaylistByNameString("My Playlist"));
     }
 
     @Test
-    public void testPlaylistDNE(){
+    public void testPlaylistDNE() {
         libraryModel.createPlaylist("My Playlist1");
-//        System.out.print(libraryModel.getPlaylistByNameString("My"));
+        // System.out.print(libraryModel.getPlaylistByNameString("My"));
         String ex = "There are no playlists by this title\n";
         assertEquals(ex, libraryModel.getPlaylistByNameString("My"));
     }
 
     @Test
-    public void testMultiplePlaylists(){
+    public void testMultiplePlaylists() {
         libraryModel.createPlaylist("My Playlist1");
         libraryModel.createPlaylist("My Playlist2");
         libraryModel.createPlaylist("My Playlist3");
-//        System.out.print(libraryModel.listAllPlaylistsString());
+        // System.out.print(libraryModel.listAllPlaylistsString());
         String ex = "=== Playlists List ===\n" +
                 "Playlist: My Playlist1\n" +
                 "Playlist: My Playlist2\n" +
@@ -242,26 +245,26 @@ public class LibraryModelTest {
     }
 
     @Test
-    public void testAddingSongToPlaylistThatDNE(){
+    public void testAddingSongToPlaylistThatDNE() {
         String ex = "Playlist Not Found";
         assertEquals(ex, libraryModel.addSongToPlaylist("One and Only", "Adele", "DNE PLAYLIST"));
     }
 
     @Test
-    public void testAddingDNESongToPlaylist(){
+    public void testAddingDNESongToPlaylist() {
         libraryModel.createPlaylist("My Playlist1");
         String ex = "Song Not Found";
         assertEquals(ex, libraryModel.addSongToPlaylist("Only One", "Kanye", "My Playlist1"));
     }
 
     @Test
-    public void testRemovingSongFromPlaylist(){
+    public void testRemovingSongFromPlaylist() {
         libraryModel.createPlaylist("My Playlist1");
         libraryModel.addSongToPlaylist("One and Only", "Adele", "My Playlist1");
         libraryModel.addSongToPlaylist("I Found a Boy", "Adele", "My Playlist1");
 
         libraryModel.removeSongFromPlaylist("I Found a Boy", "Adele", "My Playlist1");
-//        System.out.print(libraryModel.getPlaylistByNameString("My Playlist1"));
+        // System.out.print(libraryModel.getPlaylistByNameString("My Playlist1"));
         String ex = "=== Playlist: My Playlist1 ===\n" +
                 "Song - Title: One and Only, Artist: Adele, Album: 21\n";
         assertEquals(ex, libraryModel.getPlaylistByNameString("My Playlist1"));
@@ -280,6 +283,5 @@ public class LibraryModelTest {
 
         assertEquals(expected, libraryModel.listAllArtistsString());
     }
-
 
 }

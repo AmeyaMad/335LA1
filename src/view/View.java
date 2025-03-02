@@ -4,6 +4,7 @@
 //it will allow the user to interact with both the Music Store and the User lib
 //I will be heavily utilizing AI specifically chatGPT for this portion of the project
 package src.view;
+
 import java.util.Scanner;
 import src.model.*;
 
@@ -12,8 +13,10 @@ import src.model.*;
 /*
  * View.java
  *
- * This class provides a simple text-based UI for interacting with the music system.
- * The user can navigate between the Music Store and User Library menus, search for songs/albums,
+ * This class provides a simple text-based UI for interacting with the music
+ * system.
+ * The user can navigate between the Music Store and User Library menus, search
+ * for songs/albums,
  * manage playlists, rate songs, and more.
  */
 public class View {
@@ -64,7 +67,8 @@ public class View {
 
     /*
      * Ensures the user inputs a valid integer.
-     * If the input is not an integer, it will prompt the user until a valid input is received.
+     * If the input is not an integer, it will prompt the user until a valid input
+     * is received.
      *
      * @return A valid integer entered by the user.
      */
@@ -75,7 +79,6 @@ public class View {
         }
         return scanner.nextInt(); // Return valid integer input
     }
-
 
     /// THIS SECTION DEALS WITH OTHER VIEWS, ABOVE IS MAIN MENU AND BELOW IS
     ///
@@ -170,16 +173,14 @@ public class View {
         System.out.println(result);
     }
 
-
-
-
     /// USER LIBRARY & RELATED
     ///
     ///
     ///
     /*
      * Displays the User Library Menu.
-     * The user will be able to manage their personal music library, playlists, favorites, etc.
+     * The user will be able to manage their personal music library, playlists,
+     * favorites, etc.
      * (Functionality to be implemented in the next step)
      */
     private void showUserLibraryMenu() {
@@ -247,10 +248,7 @@ public class View {
         }
     }
 
-
-
-
-    //SEARCHING
+    // SEARCHING
 
     private void searchLibrarySongByTitle() {
         System.out.print("\nEnter song title: ");
@@ -297,7 +295,7 @@ public class View {
         System.out.println(result);
     }
 
-    //ADDIG
+    // ADDIG
     private void addSongToLibrary() {
         System.out.print("\nEnter song title: ");
         scanner.nextLine(); // Consume newline
@@ -312,7 +310,6 @@ public class View {
         // Print the result message
         System.out.println(result);
     }
-
 
     private void addAlbumToLibrary() {
         System.out.print("\nEnter album title: ");
@@ -338,7 +335,6 @@ public class View {
         System.out.println(lib.listAllSongsString());
     }
 
-
     /**
      * Lists all albums in the user's library.
      */
@@ -347,14 +343,12 @@ public class View {
         System.out.println(lib.listAllAlbumsString());
     }
 
-
     /**
      * Lists all artists in the user's library.
      */
     private void listAllLibraryArtists() {
         System.out.println(lib.listAllArtistsString());
     }
-
 
     /**
      * Lists all playlists in the user's library.
@@ -363,17 +357,13 @@ public class View {
     /**
      * Lists all favorite songs in the user's library.
      */
-    //TODO
+    // TODO
     private void listAllFavoriteSongs() {
         System.out.println("\n=== Favorite Songs ===");
         System.out.println(lib.getFavoritesString());
     }
 
-
-
-
     /// EMPTY SO I CAN TEST
-
 
     /**
      * Allows the user to list songs, albums, artists, playlists, or favorite songs.
@@ -388,7 +378,7 @@ public class View {
             System.out.println("1. Create a Playlist");
             System.out.println("2. Add a Song to a Playlist");
             System.out.println("3. Remove a Song from a Playlist");
-            System.out.println("4. List All Playlists");  // ✅ New option
+            System.out.println("4. List All Playlists"); // ✅ New option
             System.out.println("5. View Songs in a Playlist");
             System.out.println("6. Back to User Library Menu");
             System.out.print("Enter your choice: ");
@@ -396,18 +386,28 @@ public class View {
             int choice = getValidIntInput();
 
             switch (choice) {
-                case 1: createPlaylist(); break;
-                case 2: addSongToPlaylist(); break;
-                case 3: removeSongFromPlaylist(); break;
-                case 4: listAllLibraryPlaylists(); break; // ✅ Calls new function
-                case 5: listSongsInPlaylist(); break;
-                case 6: return; // Goes back to User Library Menu
-                default: System.out.println("Invalid choice. Please enter a number between 1 and 6.");
+                case 1:
+                    createPlaylist();
+                    break;
+                case 2:
+                    addSongToPlaylist();
+                    break;
+                case 3:
+                    removeSongFromPlaylist();
+                    break;
+                case 4:
+                    listAllLibraryPlaylists();
+                    break; // ✅ Calls new function
+                case 5:
+                    listSongsInPlaylist();
+                    break;
+                case 6:
+                    return; // Goes back to User Library Menu
+                default:
+                    System.out.println("Invalid choice. Please enter a number between 1 and 6.");
             }
         }
     }
-
-
 
     /**
      * Creates a new playlist with a user-provided name.
@@ -422,7 +422,6 @@ public class View {
 
         System.out.println("Success: Playlist '" + playlistName + "' has been created!");
     }
-
 
     /**
      * Adds a song to an existing playlist.
@@ -445,7 +444,6 @@ public class View {
         System.out.println(result);
     }
 
-
     /**
      * Removes a song from an existing playlist.
      */
@@ -463,7 +461,8 @@ public class View {
         // Call the LibraryModel function
         lib.removeSongFromPlaylist(songTitle, artistName, playlistName);
 
-        System.out.println("Attempted to remove '" + songTitle + "' by " + artistName + " from playlist '" + playlistName + "'.");
+        System.out.println(
+                "Attempted to remove '" + songTitle + "' by " + artistName + " from playlist '" + playlistName + "'.");
     }
 
     private void listSongsInPlaylist() {
@@ -475,7 +474,6 @@ public class View {
         System.out.println(result);
     }
 
-
     /**
      * Lists all playlists in the user's library.
      */
@@ -483,10 +481,6 @@ public class View {
         System.out.println("\n=== Playlists in Library ===");
         System.out.println(lib.listAllPlaylistsString());
     }
-
-
-
-
 
     /**
      * Allows the user to rate a song and mark it as a favorite if rated 5 stars.
@@ -546,7 +540,6 @@ public class View {
         System.out.println(result);
     }
 
-
     /**
      * Allows the user to manually mark a song as a favorite.
      */
@@ -565,10 +558,4 @@ public class View {
         System.out.println(result);
     }
 
-
-
 }
-
-
-
-

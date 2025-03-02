@@ -44,7 +44,7 @@ public class Album {
         return new ArrayList<Song>(songs);
     }
 
-    //over riding to string to make sure it prints information
+    // over riding to string to make sure it prints information
     @Override
     public String toString() {
         StringBuilder out = new StringBuilder("Album: " + title + ", Artist: " + artist + ", Genre: " + genre + "\n");

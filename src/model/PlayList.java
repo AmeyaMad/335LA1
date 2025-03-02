@@ -10,8 +10,6 @@ public class PlayList {
     private String name;
     private ArrayList<Song> songs;
 
-
-
     /*
      * Constructor if we want an empty playlist
      * 
@@ -27,13 +25,13 @@ public class PlayList {
         return name;
     }
 
-    //get an arraylist of all songs in list
+    // get an arraylist of all songs in list
     public ArrayList<Song> getSongs() {
         return new ArrayList<>(songs);
     }
 
-    //builds a nice string for all songs in playlist
-    public String getSongsString(){
+    // builds a nice string for all songs in playlist
+    public String getSongsString() {
         ArrayList<Song> listOfSongs = this.getSongs();
         StringBuilder sb = new StringBuilder();
         for (Song song : listOfSongs) {
@@ -47,28 +45,28 @@ public class PlayList {
 
     // Methods to modify playlist
 
-    //Adding songs to playlist
-    //@pre s != null
+    // Adding songs to playlist
+    // @pre s != null
     public void addSong(Song s) {
-        if(!songs.contains(s)) {
-            songs.add(new Song(s)); //keeping encapsulation
+        if (!songs.contains(s)) {
+            songs.add(new Song(s)); // keeping encapsulation
         }
     }
 
-    //removing song from playlist
-    //@pre s != null
+    // removing song from playlist
+    // @pre s != null
     public void removeSong(Song s) {
         songs.remove(s);
     }
 
-    //TODO CURRENT WORKING ON FUNCTINOALITY
+    // TODO CURRENT WORKING ON FUNCTINOALITY
     public String addAlbum(String title) {
         Album a = HelperFunctions.getAlbumByTitle(title);
-        if(a == null) {
+        if (a == null) {
             return "Album does not exist in Music Store";
         }
-        for(Song song : a.getSongs()) {
-            if(songs.contains(song)) {
+        for (Song song : a.getSongs()) {
+            if (songs.contains(song)) {
                 continue;
             }
             songs.add(new Song(song));

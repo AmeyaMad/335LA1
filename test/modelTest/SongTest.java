@@ -9,9 +9,6 @@ public class SongTest {
     Song song = new Song("Rolling in the Deep", "Adele", "21");
     Song song2 = new Song(song);
 
-
-
-
     @Test
     public void testGetTitle() {
         assertEquals("Rolling in the Deep", song.getTitle());

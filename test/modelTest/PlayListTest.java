@@ -7,19 +7,16 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
-
 public class PlayListTest {
     PlayList pl = new PlayList("RandomPlayList");
     Song hereWeGo = new Song("Here We Go", "Ozomatli", "Don't Mess With the Dragon");
     Song iAint = new Song("I Ain't the Same", "Alabama Shakes", "Boys & Girls");
     ArrayList<Song> songs = new ArrayList<>();
 
-
     @Test
     public void testGetName() {
         assertEquals("RandomPlayList", pl.getName());
     }
-
 
     @Test
     public void testAddSong() {
@@ -30,7 +27,6 @@ public class PlayListTest {
         assertEquals(ex, pl.getSongsString());
     }
 
-
     @Test
     public void testRemoveSong() {
         pl.addSong(hereWeGo);
@@ -38,11 +34,11 @@ public class PlayListTest {
         pl.removeSong(hereWeGo);
         String ex = "Title: I Ain't the Same, Artist: Alabama Shakes, Album: Boys & Girls\n";
         assertEquals(ex, pl.getSongsString());
-        //System.out.print(pl.getSongsString());
+        // System.out.print(pl.getSongsString());
     }
 
     @Test
-    public void addingSameSong(){
+    public void addingSameSong() {
         pl.addSong(iAint);
         pl.addSong(iAint);
         String ex = "Title: I Ain't the Same, Artist: Alabama Shakes, Album: Boys & Girls\n";
@@ -50,7 +46,7 @@ public class PlayListTest {
     }
 
     @Test
-    public void testAddingAlbums(){
+    public void testAddingAlbums() {
         pl.addAlbum("Begin Again");
         pl.addAlbum("Mission Bell");
         String ex = "Title: My Heart Is Full, Artist: Norah Jones, Album: Begin Again\n" +
@@ -74,17 +70,17 @@ public class PlayListTest {
     }
 
     @Test
-    public void testAddingBadAlbum(){
-//        System.out.print(pl.addAlbum("Graduation"));
+    public void testAddingBadAlbum() {
+        // System.out.print(pl.addAlbum("Graduation"));
         String ex = "Album does not exist in Music Store";
         assertEquals(ex, pl.addAlbum("Graduation"));
     }
 
     @Test
-    public void testAddingAlbumWhenSongsAlreadyExist(){
+    public void testAddingAlbumWhenSongsAlreadyExist() {
         pl.addSong(iAint);
         pl.addAlbum("Boys & Girls");
-//        System.out.print(pl.getSongsString());
+        // System.out.print(pl.getSongsString());
         String ex = "Title: I Ain't the Same, Artist: Alabama Shakes, Album: Boys & Girls\n" +
                 "Title: Hold On, Artist: Alabama Shakes, Album: Boys & Girls\n" +
                 "Title: I Found You, Artist: Alabama Shakes, Album: Boys & Girls\n" +
