@@ -24,7 +24,7 @@ public class LibraryModel {
     private HashMap<String, ArrayList<Album>> albumsByArtist;
 
     // need to add a hashmap for playlists
-    private HashMap<String, ArrayList<Song>> playlistByName;
+    private ArrayList<PlayList> playlistByName;
 
     private MusicStore musicStore;
 
@@ -38,7 +38,7 @@ public class LibraryModel {
         songsByArtist = new HashMap<>();
         albumsByTitle = new HashMap<>();
         albumsByArtist = new HashMap<>();
-        playlistByName = new HashMap<>();
+        playlistByName = new ArrayList<>();
         this.musicStore = musicStore;
         favoriteSongs = new ArrayList<Song>();
         songsByRating = new HashMap<>();
@@ -91,11 +91,14 @@ public class LibraryModel {
 
     // adding in playlist function
     //@pre name != null
-    public ArrayList<Song> getPlaylistByName(String name) {
-        if (!playlistByName.containsKey(name)) {
-            return null;
+    public PlayList getPlaylistByName(String name) {
+        PlayList out = null;
+        for(PlayList playlist : playlistByName) {
+            if(playlist.getName().equals(name)) {
+                out = playlist;
+            }
         }
-        return playlistByName.get(name);
+        return out;
     }
 
     // making a functions that returns string in a clean format bc default
@@ -160,7 +163,7 @@ public class LibraryModel {
             return "There are no playlists by this title\n";
         }
         StringBuilder sb = new StringBuilder();
-        for (Song s : getPlaylistByName(title)) {
+        for (Song s : getPlaylistByName(title).getSongs()) {
             sb.append(s.toString()).append("\n");
         }
         return sb.toString();
@@ -372,17 +375,17 @@ public class LibraryModel {
         return sb.toString();
     }
 
-    //will return a string with all Albums in the Library
-    public String listAllPlaylistsString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("=== Playlists List ===\n");
-
-        for (String playlistName : playlistByName.keySet()) {
-            sb.append("Playlist: ").append(playlistName).append("\n");
-        }
-
-        return sb.toString();
-    }
+//    //will return a string with all Albums in the Library
+//    public String listAllPlaylistsString() {
+//        StringBuilder sb = new StringBuilder();
+//        sb.append("=== Playlists List ===\n");
+//
+//        for (String playlistName : playlistByName.keySet()) {
+//            sb.append("Playlist: ").append(playlistName).append("\n");
+//        }
+//
+//        return sb.toString();
+//    }
 
 
 
