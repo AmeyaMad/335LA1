@@ -101,6 +101,53 @@ public class LibraryModel {
         return out;
     }
 
+    //this will create a playlist in the music library
+    //@pre name != null
+    public void createPlaylist(String name) {
+        playlistByName.add(new PlayList(name));
+    }
+
+    //this function allows us to add a song to our playlist within our library
+    //@pre title != null && artist != null && playlistName != null
+    public String addSongToPlaylist(String title, String artist, String playlistName) {
+        PlayList p = null;
+        for(PlayList playlist : playlistByName) {
+            if(playlist.getName().equals(playlistName)) {
+                p = playlist;
+            }
+        }
+        if(p == null) {
+            return "Playlist Not Found";
+        }
+
+        Song s = HelperFunctions.getSongByTitleAndArtist(title, artist);
+        if(s == null) {
+            return "Song Not Found";
+        }
+
+        p.addSong(s);
+        return "Song added to Playlist Successfully";
+    }
+
+    //this function allows us to remove a song from within a playlist that is in our library
+    //@pre title != null && artist != null && playlistName != null
+    public void removeSongFromPlaylist(String title, String artist, String playlistName) {
+        PlayList p = null;
+        for(PlayList playlist : playlistByName) {
+            if(playlist.getName().equals(playlistName)) {
+                p = playlist;
+            }
+        }
+        if(p == null) {
+            return;
+        }
+        Song s = HelperFunctions.getSongByTitleAndArtist(title, artist);
+        if(s == null) {
+            return;
+        }
+        p.removeSong(s);
+    }
+
     // making a functions that returns string in a clean format bc default
     // ArrayList.toString() stinks!
 
@@ -163,6 +210,7 @@ public class LibraryModel {
             return "There are no playlists by this title\n";
         }
         StringBuilder sb = new StringBuilder();
+        sb.append("=== Playlist ").append(title).append(" ===\n");
         for (Song s : getPlaylistByName(title).getSongs()) {
             sb.append(s.toString()).append("\n");
         }
@@ -375,17 +423,17 @@ public class LibraryModel {
         return sb.toString();
     }
 
-//    //will return a string with all Albums in the Library
-//    public String listAllPlaylistsString() {
-//        StringBuilder sb = new StringBuilder();
-//        sb.append("=== Playlists List ===\n");
-//
-//        for (String playlistName : playlistByName.keySet()) {
-//            sb.append("Playlist: ").append(playlistName).append("\n");
-//        }
-//
-//        return sb.toString();
-//    }
+    //will return a string with all playlists in the Library
+    public String listAllPlaylistsString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("=== Playlists List ===\n");
+
+        for (PlayList p: playlistByName) {
+            sb.append("Playlist: ").append(p.getName()).append("\n");
+        }
+
+        return sb.toString();
+    }
 
 
 
